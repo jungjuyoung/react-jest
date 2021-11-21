@@ -1,3 +1,3 @@
-exports.hello = (req, res) => {
-  res.send("Hello producst controller...");
+exports.createProduct = (req, res) => {
+  res.send("Hello producst create controller...");
 };
