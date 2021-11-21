@@ -18,10 +18,12 @@ describe("Product Controller Create", () => {
     req.body = newProduct; // 매번 실행할 때마다 req.body에 newProduct 넣어줌
   });
 
-  it("shold have a createProduct function", () => {
+  // 프로덕트를 생성하는 함수가 있는제 확인하는 테스트
+  it("should have a createProduct function", () => {
     expect(typeof productController.createProduct).toBe("function");
   });
 
+  // data 저장 테스트
   it("should call productModel.create", async () => {
     // productController.createProduct() 호출이 될 때
     // productModel.create 호출이 되는지 (mongDB에 model create해주는 함수)
@@ -29,15 +31,26 @@ describe("Product Controller Create", () => {
     expect(productModel.create).toBeCalledWith(req.body);
   });
 
+  // 상태값 전달 테스트
   it("should return 201 statement code", async () => {
     await productController.createProduct(req, res, next);
     expect(res.statusCode).toBe(201);
     expect(res._isEndCalled()).toBeTruthy();
   });
 
+  // json 반환 테스트
   it("should return json body in response", async () => {
     productModel.create.mockReturnValue(newProduct);
     await productController.createProduct(req, res, next);
     expect(res._getJSONData()).toStrictEqual(newProduct);
+  });
+
+  // 에러 처리를 위한 단위 테스트
+  it("should handle errors", () => {
+    const errorMessage = { message: "description property missing" };
+    const rejectedPromise = Promise.reject(errorMessage);
+    productModel.create.mockReturnValue(rejectedPromise);
+    await productController.createProduct(req, res, next);
+    expect(next).toBeCalledWith(errorMessage);
   });
 });
