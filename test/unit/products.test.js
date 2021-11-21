@@ -29,6 +29,7 @@ beforeEach(() => {
 
 describe("Product Controller Create", () => {
   beforeEach(() => {
+    // 매번 시작할때 req.body에 newProduct넣어줌
     req.body = newProduct;
   });
 
@@ -47,5 +48,11 @@ describe("Product Controller Create", () => {
     productController.createProduct(req, res, next);
     expect(res.statusCode).toBe(201);
     expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  it("should return json body in response", () => {
+    productModel.create.mockReturnValue(newProduct);
+    productController.createProduct(req, res, next);
+    expect(res._getJSONData()).toStrictEqual(newProduct);
   });
 });
