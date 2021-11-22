@@ -15,7 +15,8 @@ mongoose
   .then(() => console.log(`mongDB Connected....`))
   .catch(err => console.log(err));
 
-app.use(express.json());
+app.use(express.json()); // req.body에 클라이언트에서 전달하는 json을 처리하는 미들웨어
+app.use(express.urlencoded({ extended: true })); // req.body에 클라이언트에서 전달하는 form을 처리하는 미들웨어
 app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
