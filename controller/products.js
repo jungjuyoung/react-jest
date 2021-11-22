@@ -15,7 +15,7 @@ exports.createProduct = async (req, res, next) => {
     // async await으로 데이터가 전달된것이 확실할 때 테스트 함.
     res.status(201).json(createdProduct);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     next(error);
   }
 };
