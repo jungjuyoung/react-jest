@@ -3,10 +3,9 @@ const express = require("express");
 const PORT = 5000;
 const app = express();
 const productRoutes = require("./routes/product");
-
 const config = require("./config/key");
-
 const mongoose = require("mongoose");
+
 mongoose
   .connect(config.mongoURI, {
     useNewUrlParser: true,
@@ -23,7 +22,11 @@ app.get("/", (req, res) => {
   res.send("Hello Server....");
 });
 
-app.listen(PORT);
-console.log(`Running on http://localhost:${PORT}`);
+app.use((error, req, res, next) => {
+  res.status(500).json({ message: error.message });
+});
+
+// app.listen(PORT);
+// console.log(`Running on http://localhost:${PORT}`);
 
 module.exports = app;
