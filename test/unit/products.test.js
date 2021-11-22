@@ -3,7 +3,7 @@ const productModel = require("../../models/Product");
 const httpMocks = require("node-mocks-http");
 const newProduct = require("../data/product.json");
 
-//mock 함수 생성
+// mock 함수 생성
 productModel.create = jest.fn();
 
 let req, res, next;
@@ -26,7 +26,7 @@ describe("Product Controller Create", () => {
   // data 저장 테스트
   it("should call productModel.create", async () => {
     // productController.createProduct() 호출이 될 때
-    // productModel.create 호출이 되는지 (mongDB에 model create해주는 함수)
+    // productModel.create가 호출이 되는지 (mongDB에 model을 create해주는 함수)
     await productController.createProduct(req, res, next); // 함수안에 productModel.craete함수를 호출 함.
     expect(productModel.create).toBeCalledWith(req.body);
   });
@@ -38,7 +38,7 @@ describe("Product Controller Create", () => {
     expect(res._isEndCalled()).toBeTruthy();
   });
 
-  // json 반환 테스트
+  // 결과값 json 반환 테스트
   it("should return json body in response", async () => {
     productModel.create.mockReturnValue(newProduct);
     await productController.createProduct(req, res, next);
@@ -46,7 +46,7 @@ describe("Product Controller Create", () => {
   });
 
   // 에러 처리를 위한 단위 테스트
-  it("should handle errors", () => {
+  it("should handle errors", async () => {
     const errorMessage = { message: "description property missing" };
     const rejectedPromise = Promise.reject(errorMessage);
     productModel.create.mockReturnValue(rejectedPromise);
