@@ -7,6 +7,9 @@ const allProducts = require("../data/allProducts.json");
 // mock 함수 생성
 productModel.create = jest.fn();
 productModel.find = jest.fn();
+productModel.findById = jest.fn();
+
+const productId = "619bd01deedef1d6e070abc3";
 
 let req, res, next;
 beforeEach(() => {
@@ -92,7 +95,13 @@ describe("Product Controller Get", () => {
 });
 
 describe("Product Controller GetById", () => {
-  it("should have a getProductById", async () => {
+  it("should have a getProductById", () => {
     expect(typeof productController.getProductById).toBe("function");
+  });
+
+  it("should call productModel.findById", async () => {
+    req.params.productId = productId;
+    await productController.getProductById(req, res, next);
+    expect(productModel.findById).toBeCalledWith(productId);
   });
 });

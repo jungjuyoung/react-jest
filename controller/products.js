@@ -32,5 +32,6 @@ exports.getProduct = async (req, res, next) => {
 
 exports.getProductById = async (req, res, next) => {
   try {
+    await productModel.findById(req.params.productId);
   } catch (error) {}
 };
