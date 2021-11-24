@@ -25,6 +25,7 @@ exports.getProduct = async (req, res, next) => {
     const allProduct = await productModel.find({});
     res.status(200).json(allProduct);
   } catch (error) {
+    console.log(`error: ${error}`);
     next(error);
   }
 };
