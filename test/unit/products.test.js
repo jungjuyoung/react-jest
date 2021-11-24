@@ -87,6 +87,6 @@ describe("Product Controller Get", () => {
     const rejectedPromise = Promise.reject(errorMessage);
     productModel.find.mockReturnValue(rejectedPromise);
     await productController.getProduct(req, res, next);
-    except(next).toHaveBeenCalledWith(errorMessage);
+    expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
