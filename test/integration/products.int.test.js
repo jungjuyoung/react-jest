@@ -37,7 +37,16 @@ describe("Product Integration Read", () => {
     firstProduct = response.body[0];
   });
 
-  it("GET /api / productId", async () => {
+  it("GET /api/product/:productId", async () => {
+    const response = await request(app).get(
+      "/api/products/" + firstProduct._id
+    );
+    expect(response.statusCode).toBe(200);
+    expect(response.body.name).toBe(firstProduct.name);
+    expect(response.body.description).toBe(firstProduct.description);
+  });
+
+  it("Should return 404 on ", async () => {
     const response = await request(app).get(
       "/api/products/" + firstProduct._id
     );
