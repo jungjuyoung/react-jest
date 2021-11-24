@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../../server");
 const newProduct = require("../data/product.json");
 
-describe("Product Integration", () => {
+describe("Product Integration Create", () => {
   it("POST / api / products", async () => {
     const response = await request(app).post("/api/products").send(newProduct);
 
@@ -22,5 +22,15 @@ describe("Product Integration", () => {
       message:
         "Product validation failed: description: Path `description` is required.",
     });
+  });
+});
+
+describe("Product Integration Read", () => {
+  it("GET / api / products", async () => {
+    const response = await request(app).get("/api/products");
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body)).toBeTruthy();
+    expect(response.body[0].name).toBeDefined();
+    expect(response.body[0].description).toBeDefined();
   });
 });
