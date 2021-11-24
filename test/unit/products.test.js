@@ -90,3 +90,9 @@ describe("Product Controller Get", () => {
     expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
+
+describe("Product Controller GetById", () => {
+  it("should have a getProductById", async () => {
+    expect(typeof productController.getProductById).toBe("function");
+  });
+});
