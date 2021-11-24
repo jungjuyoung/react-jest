@@ -46,12 +46,10 @@ describe("Product Integration Read", () => {
     expect(response.body.description).toBe(firstProduct.description);
   });
 
-  it("Should return 404 on ", async () => {
+  it("GET id does not exist /api/products/:productID", async () => {
     const response = await request(app).get(
-      "/api/products/" + firstProduct._id
+      "/api/products/" + "619a8397f317c82500e80577"
     );
-    expect(response.statusCode).toBe(200);
-    expect(response.body.name).toBe(firstProduct.name);
-    expect(response.body.description).toBe(firstProduct.description);
+    expect(response.statusCode).toBe(404);
   });
 });
