@@ -3,7 +3,7 @@ const productModel = require("../models/Product");
 exports.createProduct = async (req, res, next) => {
   try {
     const createdProduct = await productModel.create(req.body);
-    console.log(`createdProduct : ${JSON.stringify(createdProduct)}`);
+    // console.log(`createdProduct : ${JSON.stringify(createdProduct)}`);
     // {
     //   "name":"glove",
     //   "description":"good usability",
@@ -23,6 +23,7 @@ exports.createProduct = async (req, res, next) => {
 exports.getProduct = async (req, res, next) => {
   try {
     const allProduct = await productModel.find({});
+    res.status(200).json(allProduct);
   } catch (error) {
     next(error);
   }

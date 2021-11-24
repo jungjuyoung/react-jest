@@ -1,0 +1,17 @@
+[
+  {
+    "name":"장갑",
+    "description":"사용성이 좋다.",
+    "price":15000
+  },
+  {
+    "name":"안경",
+    "description":"시력보호",
+    "price":28000
+  },
+  {
+    "name":"컵",
+    "description":"보온",
+    "price":8000
+  }
+]
