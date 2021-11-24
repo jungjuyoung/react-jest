@@ -112,4 +112,11 @@ describe("Product Controller GetById", () => {
     expect(res._getJSONData()).toStrictEqual(newProduct);
     expect(res._isEndCalled()).toBeTruthy();
   });
+
+  it("should return 404 when item doesn't exixt", async () => {
+    productModel.findById.mockReturnValue(null);
+    await productController.getProductById(req, res, next);
+    expect(res.statusCode).toBe(404);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
 });
