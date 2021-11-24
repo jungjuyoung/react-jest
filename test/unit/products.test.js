@@ -5,6 +5,7 @@ const newProduct = require("../data/product.json");
 
 // mock 함수 생성
 productModel.create = jest.fn();
+productModel.find = jest.fn();
 
 let req, res, next;
 beforeEach(() => {
@@ -61,5 +62,9 @@ describe("Product Controller Create", () => {
 describe("Product Controller Get", () => {
   it("should have a getProduct function", () => {
     expect(typeof productController.getProduct).toBe("function");
+  });
+  it("should call productModel.find({})", async () => {
+    await productController.getProduct(req, res, next);
+    expect(productModel.find).toHaveBeenCalledWith({});
   });
 });

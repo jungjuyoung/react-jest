@@ -20,4 +20,10 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
-exports.getProduct = async (req, res, next) => {};
+exports.getProduct = async (req, res, next) => {
+  try {
+    const allProduct = await productModel.find({});
+  } catch (error) {
+    next(error);
+  }
+};
