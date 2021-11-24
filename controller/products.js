@@ -39,6 +39,7 @@ exports.getProductById = async (req, res, next) => {
       res.status(404).send();
     }
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
