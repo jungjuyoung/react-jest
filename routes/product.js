@@ -8,6 +8,8 @@ router.post("/", productController.createProduct);
 router.get("/", productController.getProduct);
 // GET / api/productByID
 router.get("/:productId", productController.getProductById);
-//PUT /api/productByID
+// PUT /api/productByID
 router.put("/:productId", productController.updateProduct);
+// DELETE /api/products
+router.delete("/:productId", productController.deleteProduct);
 module.exports = router;

@@ -1,4 +1,5 @@
 const request = require("supertest");
+const Product = require("../../models/Product");
 const app = require("../../server");
 const newProduct = require("../data/product.json");
 
@@ -69,5 +70,14 @@ describe("Product Integration Update", () => {
       .put("/api/products/" + "619a8397f317c82500e80599")
       .send({ name: "updated name", description: "updated description" });
     expect(res.statusCode).toBe(404);
+  });
+});
+
+describe("Product Integration Delete", () => {
+  it("DELETE /api/products", async () => {
+    const res = await request(app)
+      .delete("/api/products/" + firstProduct._id)
+      .send();
+    expect(res.statusCode).toBe(200);
   });
 });
