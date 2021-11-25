@@ -105,7 +105,7 @@ describe("Product Controller GetById", () => {
     expect(productModel.findById).toBeCalledWith(productId);
   });
 
-  it("should return json body in response code 200", async () => {
+  it("should return json body and response code 200", async () => {
     productModel.findById.mockReturnValue(newProduct);
     await productController.getProductById(req, res, next);
     expect(res.statusCode).toBe(200);
