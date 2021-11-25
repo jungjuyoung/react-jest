@@ -174,3 +174,9 @@ describe("Product Controller Update", () => {
     expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
+
+describe("Product Controller Create", () => {
+  it("should have a deleteProduct function", () => {
+    expect(typeof productController.deleteProduct).toBe("function");
+  });
+});
