@@ -63,4 +63,11 @@ describe("Product Integration Update", () => {
     expect(res.body.name).toBe("updated name");
     expect(res.body.description).toBe("updated description");
   });
+
+  it("should return 404 on PUT /api/products", async () => {
+    const res = await request(app)
+      .put("/api/products/" + "619a8397f317c82500e80599")
+      .send({ name: "updated name", description: "updated description" });
+    expect(res.statusCode).toBe(404);
+  });
 });
