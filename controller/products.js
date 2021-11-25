@@ -43,3 +43,8 @@ exports.getProductById = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.updateProduct = async (req, res, next) => {
+  // try {
+  // } catch (error) {}
+};
